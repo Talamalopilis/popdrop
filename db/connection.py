@@ -24,9 +24,11 @@ class DBInterface:
 
     @staticmethod
     def _execute(db, query):
+        success = False
         try:
             db.cursor.execute(query)
             db.conn.commit()
+            success = True
         except psycopg2.ProgrammingError as err:
             # ProgrammingError is thrown when the database error is related to the format of the query (e.g. syntax error)
             print("Caught a ProgrammingError:", file=sys.stderr)
@@ -44,5 +46,5 @@ class DBInterface:
             print("Caught an IntegrityError:", file=sys.stderr)
             print(err, file=sys.stderr)
             db.conn.rollback()
-        db.cursor.close()
-        db.conn.close()
+
+        return success
