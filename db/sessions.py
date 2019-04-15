@@ -11,11 +11,13 @@ class Sessions(DBInterface):
                                                                                                game_name,
                                                                                                date_of_session,
                                                                                                time_of_day))
-        self._execute(db, q)
+        success = self._execute(db, q)
+        db.close()
+        return success
 
     def get_active_sessions(self, server_id):
         db = DBConnection()
-        q = db.cursor.mogrify("select * from sessions where server_id=%s and date_of_session>=now();", (server_id,))
+        q = db.cursor.mogrify("select * from sessions where server_id=%s and date_of_session>=now()::date;", (server_id,))
         self._execute(db, q)
         out = db.cursor.fetchall()
         db.close()

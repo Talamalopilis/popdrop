@@ -22,7 +22,8 @@ create table sessions(
 	unique(server_id, game_name, date_of_session),
 	foreign key(game_name, server_id) references games(game_name, server_id)
 	    on delete cascade
-	    on update cascade
+	    on update cascade,
+	check(time_of_day > 0 and time_of_day <= 12)
 	);
 
 create table subscriptions(

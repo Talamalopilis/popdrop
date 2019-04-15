@@ -17,3 +17,10 @@ def get_session_date(day):
     while d.weekday() != val:
         d += datetime.timedelta(days=1)
     return d
+
+def get_day_from_date(date):
+    d = datetime.date.today()
+    if date.weekday() == d.weekday():
+        return "today"
+    else:
+        return date.strftime("%A")

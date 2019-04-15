@@ -1,5 +1,6 @@
 # Work with Python 3.6
 import discord
+import random
 from secrets import TOKEN
 from collections import defaultdict
 from controller import Controller
@@ -14,13 +15,25 @@ async def on_message(message):
     if message.author == client.user:
         return
     # USE waited on to wait for user number reply while holding context @!!!
+    msg = message.content.split(" ")
     if message.content.startswith('!hello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await client.send_message(message.channel, msg)
 
-    if message.content.startswith('!popdrop'):
+    elif message.content.startswith('!popdrop'):
         c = Controller(client, message)
         await c.on_message()
+
+    elif random.random() < 0.15:
+        msg = message.content.split(" ")
+        await client.send_message(message.channel, random.choice(msg))
+
+
+    elif "netcode" in msg:
+        await client.send_message(message.channel, "Monkeys, fix the netcode!")
+    elif "popdrop" in msg:
+        await client.add_reaction(message, "😯")
+
 
 @client.event
 async def on_ready():
