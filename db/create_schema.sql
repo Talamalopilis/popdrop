@@ -1,6 +1,8 @@
+--alter database popdrop set timezone to 'America/Vancouver';
+--SELECT pg_reload_conf();
 drop table if exists subscriptions;
-drop table if exists sessions;
-drop table if exists games;
+--drop table if exists sessions;
+--drop table if exists games;
 
 
 create table games(
@@ -28,7 +30,7 @@ create table sessions(
 
 create table subscriptions(
     session_id int,
-    user_id int,
+    user_id bigint,
     user_name varchar(255),
     primary key(session_id, user_id),
     foreign key(session_id) references sessions(session_id)

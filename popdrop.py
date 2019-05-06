@@ -19,19 +19,20 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await client.send_message(message.channel, msg)
+        return
 
-    elif message.content.startswith('!popdrop'):
+    if message.content.startswith('!popdrop'):
         c = Controller(client, message)
         await c.on_message()
+        return
 
-    elif random.random() < 0.15:
+    if random.random() < 0.10:
         msg = message.content.split(" ")
         await client.send_message(message.channel, random.choice(msg))
-
-
     elif "netcode" in msg:
         await client.send_message(message.channel, "Monkeys, fix the netcode!")
-    elif "popdrop" in msg:
+
+    if "popdrop" in msg:
         await client.add_reaction(message, "😯")
 
 

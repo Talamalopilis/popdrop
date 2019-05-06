@@ -48,7 +48,7 @@ class Games(DBInterface):
 
     def get_games(self, server_id):
         db = DBConnection()
-        q = db.cursor.mogrify("select game_name from games where server_id=%s;", (server_id,))
+        q = db.cursor.mogrify("select game_name from games where server_id=%s order by game_name asc;", (server_id,))
         self._execute(db, q)
         out = db.cursor.fetchall()
         db.close()
