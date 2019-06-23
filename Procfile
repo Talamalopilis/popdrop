@@ -1,1 +1,1 @@
-py popdrop.py
+python popdrop.py
