@@ -1,13 +1,13 @@
 # Work with Python 3.6
 import discord
-import random
-from secrets import TOKEN
+import random, os
 from collections import defaultdict
 from controller import Controller
 
 client = discord.Client()
 
 db = defaultdict(str)
+
 
 @client.event
 async def on_message(message):
@@ -48,4 +48,4 @@ async def on_ready():
     print('------')
 
 
-client.run(TOKEN)
+client.run(os.environ['TOKEN'])

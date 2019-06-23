@@ -1,9 +1,8 @@
-import psycopg2, sys
-from secrets import PSQL_PASSWORD
+import psycopg2, sys, os
 # Open your DB connection here
 psql_user = 'postgres'  # Change this to your username
 psql_db = 'popdrop'  # Change this to your personal DB name
-psql_password = PSQL_PASSWORD  # Put your password (as a string) here
+psql_password = os.environ['PSQL_PASSWORD']  # Put your password (as a string) here
 psql_server = 'localhost'
 psql_port = 5432
 

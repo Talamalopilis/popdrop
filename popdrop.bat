@@ -1,1 +1,3 @@
+set TOKEN=NTM5MjA3MTg0NjUxNjQ5MDY1.XKEpBQ.A-uYjs-WIKLv_2oWwvQkRpVHHCU
+set PSQL_PASSWORD=root
 py popdrop.py
