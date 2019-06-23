@@ -1,1 +1,1 @@
-worker: python popdrop.py
+web: python popdrop.py
