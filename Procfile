@@ -1,1 +1,1 @@
-python popdrop.py
+worker: python popdrop.py
