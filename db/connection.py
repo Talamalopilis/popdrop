@@ -9,7 +9,10 @@ psql_port = 5432
 
 class DBConnection:
     def __init__(self):
-        self.conn = psycopg2.connect(dbname=psql_db,user=psql_user,password=psql_password,host=psql_server,port=psql_port)
+        if os.environ['local_popdrop']:
+            self.conn = psycopg2.connect(dbname=psql_db,user=psql_user,password=psql_password,host=psql_server,port=psql_port)
+        else:
+            self.conn = psycopg2.connect(os.environ['DATABASE_URL'])
         self.cursor = self.conn.cursor()
 
     def close(self):
