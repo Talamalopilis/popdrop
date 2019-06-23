@@ -2,7 +2,6 @@ import psycopg2, sys, os
 # Open your DB connection here
 psql_user = 'postgres'  # Change this to your username
 psql_db = 'popdrop'  # Change this to your personal DB name
-psql_password = os.environ['PSQL_PASSWORD']  # Put your password (as a string) here
 psql_server = 'localhost'
 psql_port = 5432
 
@@ -10,7 +9,7 @@ psql_port = 5432
 class DBConnection:
     def __init__(self):
         if os.environ['local_popdrop']:
-            self.conn = psycopg2.connect(dbname=psql_db,user=psql_user,password=psql_password,host=psql_server,port=psql_port)
+            self.conn = psycopg2.connect(dbname=psql_db,user=psql_user,password=os.environ['PSQL_PASSWORD'],host=psql_server,port=psql_port)
         else:
             self.conn = psycopg2.connect(os.environ['DATABASE_URL'])
         self.cursor = self.conn.cursor()
