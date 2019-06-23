@@ -26,11 +26,15 @@ async def on_message(message):
         await c.on_message()
         return
 
-    if random.random() < 0.10:
+    if random.random() < 0.02:
         msg = message.content.split(" ")
         await client.send_message(message.channel, random.choice(msg))
     elif "netcode" in msg:
         await client.send_message(message.channel, "Monkeys, fix the netcode!")
+    elif "money" in msg:
+        await client.send_message(message.channel, "This is a business!")
+    elif "hate them" in msg:
+        await client.send_message(message.channel, "bitches")
 
     if "popdrop" in msg:
         await client.add_reaction(message, "😯")
